@@ -6,7 +6,7 @@ namespace Teste3Con.Entidade
 {
     public class Localizacao
     {
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

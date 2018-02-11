@@ -8,6 +8,7 @@ namespace Teste3Con.Entidade
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public double Distancia { get; set; }
         public Localizacao Localizacao { get; set; }
         public List<Amigos> AmigosProximos { get; set; }
     }

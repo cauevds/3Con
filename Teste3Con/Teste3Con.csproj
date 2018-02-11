@@ -5,5 +5,9 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controle\GeoCoordinate.cs" />
+  </ItemGroup>
+
 
 </Project>

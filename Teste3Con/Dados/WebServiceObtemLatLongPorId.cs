@@ -9,7 +9,7 @@ namespace Teste3Con.Dados
     {
         public Localizacao ObterLatLongPorId(int id)
         {
-            Random random = new Random();
+            var random = new Random();
             return (new Localizacao
             {
                 Latitude = random.NextDouble(),

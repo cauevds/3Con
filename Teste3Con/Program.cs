@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Teste3Con.Controle;
 
 namespace Teste3Con
@@ -8,13 +9,18 @@ namespace Teste3Con
         static void Main(string[] args)
         {
             var todosAmigos = new Controller().BuscarAmigos();
-            foreach (var item in todosAmigos)
+            foreach (var amigo in todosAmigos)
             {
-                Console.WriteLine(item);
-
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("Amigos mais próximos de "+ amigo.Nome);
+                foreach (var amg in amigo.AmigosProximos)
+                {
+                    Console.WriteLine("-"+amg.Nome);
+                }
+                
             }
-            
-            
+            Console.ReadKey();
+
         }
     }
 }
