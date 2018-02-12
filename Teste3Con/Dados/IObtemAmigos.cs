@@ -7,6 +7,6 @@ namespace Teste3Con.Dados
 {
     interface IObtemAmigos
     {
-        List<Amigos> ObterAmigo();
+        List<Amigo> ObterAmigo();
     }
 }

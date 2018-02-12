@@ -5,46 +5,42 @@ using Teste3Con.Entidade;
 using System.Linq;
 namespace Teste3Con.Controle
 {
-    public class Controller
+    public class Controller : IController
     {
         private IObtemAmigos iObtemAmigos;
 
-        public List<Amigos> BuscarAmigos()
-        {
-            var amigos = new List<Amigos>();
+        public List<Amigo> BuscarAmigos()
+        {           
             iObtemAmigos = new ObtemAmigos();
-
-            amigos = CalcularDistanciaDosAmigos(iObtemAmigos.ObterAmigo());
-            return OrdernaListaPorDistancia(amigos);
-            
+            return iObtemAmigos.ObterAmigo();
         }
 
-        private List<Amigos> CalcularDistanciaDosAmigos(List<Amigos> ListaAmigos)
+        public List<Amigo> CalcularDistanciaDosAmigos(List<Amigo> ListaAmigos)
         {           
-            List<Amigos> CopiaListaAmigos = ListaAmigos;
+            List<Amigo> CopiaListaAmigos = ListaAmigos;
 
             foreach (var amigo in ListaAmigos)
             {
-                amigo.AmigosProximos = new List<Amigos>();
+                amigo.AmigosProximos = new List<Amigo>();
                 foreach (var OutroAmg in CopiaListaAmigos)
                 {
                     if (amigo.Id != OutroAmg.Id)
                     {
                         OutroAmg.Distancia = CalcularDistanciaCartesiana(amigo.Localizacao.Latitude, amigo.Localizacao.Longitude, OutroAmg.Localizacao.Latitude, OutroAmg.Localizacao.Longitude);
 
-                        amigo.AmigosProximos.Add(new Amigos {Id= OutroAmg.Id,Nome = OutroAmg.Nome, Distancia = OutroAmg.Distancia, Localizacao = OutroAmg.Localizacao });
+                        amigo.AmigosProximos.Add(new Amigo {Id= OutroAmg.Id,Nome = OutroAmg.Nome, Distancia = OutroAmg.Distancia, Localizacao = OutroAmg.Localizacao });
                     }
                 }               
 
             }
             return ListaAmigos;
         }
-        private double CalcularDistanciaCartesiana(double origemLat, double origemLong, double destinoLat, double destinoLong)
+        public double CalcularDistanciaCartesiana(double origemLat, double origemLong, double destinoLat, double destinoLong)
         {
             return System.Math.Sqrt(System.Math.Pow((destinoLat - origemLat), 2) + System.Math.Pow((destinoLong - origemLong), 2));
         }
 
-        private List<Amigos> OrdernaListaPorDistancia(List<Amigos> todosAmigos)
+        public List<Amigo> ObterTresMaisProximos(List<Amigo> todosAmigos)
         {
             foreach (var amg in todosAmigos)
             {
@@ -54,6 +50,7 @@ namespace Teste3Con.Controle
             }
             return todosAmigos;
         }
+
        
     }
 }
