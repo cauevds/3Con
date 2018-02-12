@@ -14,21 +14,28 @@ namespace Teste3Con
             IController iController = new Controller();
             List<Amigo> listaAmigos = new List<Amigo>();
 
-            listaAmigos = iController.BuscarAmigos();
-            listaAmigos.ForEach(x => x.Localizacao = iController.ObterLatLongPorId(x.Id));
-            listaAmigos = iController.CalcularDistanciaDosAmigos(listaAmigos);
-            listaAmigos = iController.ObterTresMaisProximos(listaAmigos);
-
-            foreach (var amigo in listaAmigos)
+            try
             {
-                Console.WriteLine("Amigos mais próximos de "+ amigo.Nome);
-                foreach (var amg in amigo.AmigosProximos)
+                listaAmigos = iController.BuscarAmigos();
+                listaAmigos.ForEach(x => x.Localizacao = iController.ObterLatLongPorId(x.Id));
+                listaAmigos = iController.CalcularDistanciaDosAmigos(listaAmigos);
+                listaAmigos = iController.ObterTresMaisProximos(listaAmigos);
+
+                foreach (var amigo in listaAmigos)
                 {
-                    Console.WriteLine("-"+amg.Nome);
+                    Console.WriteLine("Amigos mais próximos de " + amigo.Nome);
+                    foreach (var amg in amigo.AmigosProximos)
+                    {
+                        Console.WriteLine("-" + amg.Nome);
+                    }
+                    Console.WriteLine("----------------------------------------------");
                 }
-                Console.WriteLine("----------------------------------------------");
+                Console.ReadKey();
             }
-            Console.ReadKey();
+            catch (Exception ex)
+            {
+                throw new Exception("Não foi possível buscar os amigos mais próximos - Detalhes: " + ex);
+            }           
         }
     }
 }

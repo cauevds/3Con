@@ -14,7 +14,7 @@ namespace TestesUnidade3Con
         public void ObterAmigos()
         {
             var amigos = iController.BuscarAmigos();
-            Assert.IsNotNull(amigos, "Não encontrou Amigos");
+            Assert.IsNotNull(amigos, "Não foi possível obter lista de Amigos da API");
         }
 
         [TestMethod]
@@ -27,6 +27,13 @@ namespace TestesUnidade3Con
 
             var calcDistanciaCartesiana = iController.CalcularDistanciaCartesiana(MinhaLatitude, MinhaLongitudo, AmigoLatitude, AmigoLongitude);
             Assert.AreEqual(223, calcDistanciaCartesiana, 1);
+        }
+        
+        [TestMethod]
+        public void ObtemLatLongPorId()
+        {
+            var latLong = iController.ObterLatLongPorId(1);
+            Assert.IsNotNull(latLong, "Não foi possível obter Latitude e Longitudo da API");
         }
 
         [TestMethod]
@@ -54,13 +61,6 @@ namespace TestesUnidade3Con
             Assert.AreEqual(resultado[0].AmigosProximos[0].Nome, Correta.AmigosProximos[0].Nome);
             Assert.AreEqual(resultado[0].AmigosProximos[1].Nome, Correta.AmigosProximos[1].Nome);
             Assert.AreEqual(resultado[0].AmigosProximos[2].Nome, Correta.AmigosProximos[2].Nome);
-        }
-
-        [TestMethod]
-        public void ObtemLatLongPorId()
-        {
-            var latLong = iController.ObterLatLongPorId(1);
-            Assert.IsNotNull(latLong, "Não foi possível obter Latitude e Longitudo do amigo");
-        }
+        }        
     }
 }

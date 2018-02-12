@@ -10,51 +10,88 @@ namespace Teste3Con.Controle
         private IObtemAmigos iObtemAmigos;
 
         public List<Amigo> BuscarAmigos()
-        {           
-            iObtemAmigos = new ObtemAmigos();
-            return iObtemAmigos.ObterAmigo();
+        {
+            try
+            {
+                iObtemAmigos = new ObtemAmigos();
+                return iObtemAmigos.ObterAmigo();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter a lista de amigos da API " + ex);
+            }       
         }
 
         public List<Amigo> CalcularDistanciaDosAmigos(List<Amigo> ListaAmigos)
-        {           
-            List<Amigo> CopiaListaAmigos = ListaAmigos;
-
-            foreach (var amigo in ListaAmigos)
+        {      
+            try
             {
-                amigo.AmigosProximos = new List<Amigo>();
-                foreach (var OutroAmg in CopiaListaAmigos)
+                List<Amigo> CopiaListaAmigos = ListaAmigos;
+                foreach (var amigo in ListaAmigos)
                 {
-                    if (amigo.Id != OutroAmg.Id)
+                    amigo.AmigosProximos = new List<Amigo>();
+                    foreach (var OutroAmg in CopiaListaAmigos)
                     {
-                        OutroAmg.Distancia = CalcularDistanciaCartesiana(amigo.Localizacao.Latitude, amigo.Localizacao.Longitude, OutroAmg.Localizacao.Latitude, OutroAmg.Localizacao.Longitude);
+                        if (amigo.Id != OutroAmg.Id)
+                        {
+                            OutroAmg.Distancia = CalcularDistanciaCartesiana(amigo.Localizacao.Latitude, amigo.Localizacao.Longitude, OutroAmg.Localizacao.Latitude, OutroAmg.Localizacao.Longitude);
 
-                        amigo.AmigosProximos.Add(new Amigo {Id= OutroAmg.Id,Nome = OutroAmg.Nome, Distancia = OutroAmg.Distancia, Localizacao = OutroAmg.Localizacao });
+                            amigo.AmigosProximos.Add(new Amigo { Id = OutroAmg.Id, Nome = OutroAmg.Nome, Distancia = OutroAmg.Distancia, Localizacao = OutroAmg.Localizacao });
+                        }
                     }
-                }               
-
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao calcular proximidade dos amigos. " + ex);
+            }
+            
             return ListaAmigos;
         }
+
+
         public double CalcularDistanciaCartesiana(double origemLat, double origemLong, double destinoLat, double destinoLong)
         {
-            return System.Math.Sqrt(System.Math.Pow((destinoLat - origemLat), 2) + System.Math.Pow((destinoLong - origemLong), 2));
+            try
+            {
+                return System.Math.Sqrt(System.Math.Pow((destinoLat - origemLat), 2) + System.Math.Pow((destinoLong - origemLong), 2));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao calcular Distância por Latitude e Longitude. " + ex);
+            }
         }
 
         public List<Amigo> ObterTresMaisProximos(List<Amigo> todosAmigos)
         {
-            foreach (var amg in todosAmigos)
+            try
             {
-                amg.AmigosProximos = (from a in amg.AmigosProximos
-                               orderby a.Distancia ascending
-                               select a).Take(3).ToList();
+                foreach (var amg in todosAmigos)
+                {
+                    amg.AmigosProximos = (from a in amg.AmigosProximos
+                                          orderby a.Distancia ascending
+                                          select a).Take(3).ToList();
+                }
+                return todosAmigos;
             }
-            return todosAmigos;
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao Obter os três amigos mais próximos " + ex);
+            }
+            
         }
 
         public Localizacao ObterLatLongPorId(int id)
         {
-            ObtemLatLongPorId obter = new ObtemLatLongPorId();
-            return obter.ObterLatLongPorId(id);
+            try
+            {
+                ObtemLatLongPorId obter = new ObtemLatLongPorId();
+                return obter.ObterLatLongPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao Obter latitude e longitude da API" + ex);
+            }          
         }
        
     }
