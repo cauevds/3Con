@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Teste3Con.Entidade;
 
-namespace Teste3Con.Dados
+namespace Teste3Con.API
 {
     public class ObtemLatLongPorId
     {       
@@ -13,8 +13,8 @@ namespace Teste3Con.Dados
             Random random = new Random();
             return (new Localizacao
             {
-                Latitude = random.NextDouble() * id,
-                Longitude = random.NextDouble() * id - 10
+                Latitude = random.Next() * id,
+                Longitude = random.Next() * id - 10
             });
         }
     }

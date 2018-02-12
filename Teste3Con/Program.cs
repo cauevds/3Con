@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Teste3Con.Controle;
 using Teste3Con.Entidade;
-using Teste3Con.Dados;
 
 namespace Teste3Con
 {
@@ -18,10 +16,10 @@ namespace Teste3Con
             {
                 listaAmigos = iController.BuscarAmigos();
                 listaAmigos.ForEach(x => x.Localizacao = iController.ObterLatLongPorId(x.Id));
-                listaAmigos = iController.CalcularDistanciaDosAmigos(listaAmigos);
-                listaAmigos = iController.ObterTresMaisProximos(listaAmigos);
+                var listaAmigosComDistancia = iController.CalcularDistanciaDosAmigos(listaAmigos);
+                var listaAmigosMaisProximos = iController.ObterTresMaisProximos(listaAmigosComDistancia);
 
-                foreach (var amigo in listaAmigos)
+                foreach (var amigo in listaAmigosMaisProximos)
                 {
                     Console.WriteLine("Amigos mais próximos de " + amigo.Nome);
                     foreach (var amg in amigo.AmigosProximos)

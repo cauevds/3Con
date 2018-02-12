@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Teste3Con.Entidade;
 
-namespace Teste3Con.Dados
+namespace Teste3Con.API
 {
     public class ObtemAmigos : IObtemAmigos
     {

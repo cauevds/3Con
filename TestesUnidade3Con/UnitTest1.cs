@@ -39,13 +39,7 @@ namespace TestesUnidade3Con
         [TestMethod]
         public void ObterTresAmigosMaisProximos()
         {
-            var Correta = (new Amigo { Id = 8, Nome = "Maria", Localizacao = new Localizacao { Latitude = 400, Longitude = 400 } });
-            Correta.AmigosProximos = new List<Amigo>();
-            Correta.AmigosProximos.Add(new Amigo { Id = 10, Nome = "Jose", Localizacao = new Localizacao { Latitude = 300, Longitude = 300 }, Distancia = 141.42135623730951 });
-            Correta.AmigosProximos.Add(new Amigo { Id = 12, Nome = "Marcos", Localizacao = new Localizacao { Latitude = 510, Longitude = 510 }, Distancia = 155.56349186104046 });
-            Correta.AmigosProximos.Add(new Amigo { Id = 9, Nome = "Italo", Localizacao = new Localizacao { Latitude = 200, Longitude = 200 }, Distancia = 282.842712474619 });
-
-
+           
             var ListaTeste = new List<Amigo>();
             var Teste = (new Amigo { Id = 8, Nome = "Joao", Localizacao = new Localizacao { Latitude = 400, Longitude = 400 } });
             Teste.AmigosProximos = new List<Amigo>();
@@ -58,9 +52,9 @@ namespace TestesUnidade3Con
             ListaTeste.Add(Teste);
             var resultado = iController.ObterTresMaisProximos(ListaTeste);
             Assert.AreEqual(3, resultado[0].AmigosProximos.Count, 0);
-            Assert.AreEqual(resultado[0].AmigosProximos[0].Nome, Correta.AmigosProximos[0].Nome);
-            Assert.AreEqual(resultado[0].AmigosProximos[1].Nome, Correta.AmigosProximos[1].Nome);
-            Assert.AreEqual(resultado[0].AmigosProximos[2].Nome, Correta.AmigosProximos[2].Nome);
+            Assert.AreEqual(resultado[0].AmigosProximos[0].Nome, "Jose");
+            Assert.AreEqual(resultado[0].AmigosProximos[1].Nome, "Marcos");
+            Assert.AreEqual(resultado[0].AmigosProximos[2].Nome, "Italo");
         }        
     }
 }

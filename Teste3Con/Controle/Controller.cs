@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using Teste3Con.Dados;
 using Teste3Con.Entidade;
 using System.Linq;
 namespace Teste3Con.Controle
 {
     public class Controller : IController
     {
-        private IObtemAmigos iObtemAmigos;
+        private API.IObtemAmigos iObtemAmigos;
 
         public List<Amigo> BuscarAmigos()
         {
             try
             {
-                iObtemAmigos = new ObtemAmigos();
+                iObtemAmigos = new API.ObtemAmigos();
                 return iObtemAmigos.ObterAmigo();
             }
             catch (Exception ex)
@@ -85,7 +84,7 @@ namespace Teste3Con.Controle
         {
             try
             {
-                ObtemLatLongPorId obter = new ObtemLatLongPorId();
+                API.ObtemLatLongPorId obter = new API.ObtemLatLongPorId();
                 return obter.ObterLatLongPorId(id);
             }
             catch (Exception ex)
