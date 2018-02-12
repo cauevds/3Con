@@ -30,9 +30,8 @@ namespace TestesUnidade3Con
         }
 
         [TestMethod]
-        public void ObterAmigosMaisProximos()
+        public void ObterTresAmigosMaisProximos()
         {
-            var ListaCorreta = new List<Amigo>();
             var Correta = (new Amigo { Id = 8, Nome = "Maria", Localizacao = new Localizacao { Latitude = 400, Longitude = 400 } });
             Correta.AmigosProximos = new List<Amigo>();
             Correta.AmigosProximos.Add(new Amigo { Id = 10, Nome = "Jose", Localizacao = new Localizacao { Latitude = 300, Longitude = 300 }, Distancia = 141.42135623730951 });
@@ -47,7 +46,7 @@ namespace TestesUnidade3Con
             Teste.AmigosProximos.Add(new Amigo { Id = 9, Nome = "Italo", Localizacao = new Localizacao { Latitude = 200, Longitude = 200 }, Distancia = 282.842712474619 });
             Teste.AmigosProximos.Add(new Amigo { Id = 10, Nome = "Jose", Localizacao = new Localizacao { Latitude = 300, Longitude = 300 }, Distancia = 141.42135623730951 });
             Teste.AmigosProximos.Add(new Amigo { Id = 12, Nome = "Marcos", Localizacao = new Localizacao { Latitude = 510, Longitude = 510 }, Distancia = 155.56349186104046 });
-
+         
 
             ListaTeste.Add(Teste);
             var resultado = iController.ObterTresMaisProximos(ListaTeste);
@@ -55,6 +54,13 @@ namespace TestesUnidade3Con
             Assert.AreEqual(resultado[0].AmigosProximos[0].Nome, Correta.AmigosProximos[0].Nome);
             Assert.AreEqual(resultado[0].AmigosProximos[1].Nome, Correta.AmigosProximos[1].Nome);
             Assert.AreEqual(resultado[0].AmigosProximos[2].Nome, Correta.AmigosProximos[2].Nome);
+        }
+
+        [TestMethod]
+        public void ObtemLatLongPorId()
+        {
+            var latLong = iController.ObterLatLongPorId(1);
+            Assert.IsNotNull(latLong, "Não foi possível obter Latitude e Longitudo do amigo");
         }
     }
 }

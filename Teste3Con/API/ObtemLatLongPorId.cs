@@ -5,15 +5,16 @@ using Teste3Con.Entidade;
 
 namespace Teste3Con.Dados
 {
-    public class WebServiceObtemLatLongPorId
-    {
+    public class ObtemLatLongPorId
+    {       
+        //Mock
         public Localizacao ObterLatLongPorId(int id)
         {
-            var random = new Random();
+            Random random = new Random();
             return (new Localizacao
             {
-                Latitude = random.NextDouble(),
-                Longitude = random.NextDouble()
+                Latitude = random.NextDouble() * id,
+                Longitude = random.NextDouble() * id - 10
             });
         }
     }

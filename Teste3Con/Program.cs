@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Teste3Con.Controle;
 using Teste3Con.Entidade;
+using Teste3Con.Dados;
 
 namespace Teste3Con
 {
     class Program
     {
-       
-
         static void Main(string[] args)
         {
             IController iController = new Controller();
             List<Amigo> listaAmigos = new List<Amigo>();
 
             listaAmigos = iController.BuscarAmigos();
+            listaAmigos.ForEach(x => x.Localizacao = iController.ObterLatLongPorId(x.Id));
             listaAmigos = iController.CalcularDistanciaDosAmigos(listaAmigos);
             listaAmigos = iController.ObterTresMaisProximos(listaAmigos);
 

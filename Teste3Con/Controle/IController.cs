@@ -11,5 +11,6 @@ namespace Teste3Con.Controle
         List<Amigo> CalcularDistanciaDosAmigos(List<Amigo> ListaAmigos);
         double CalcularDistanciaCartesiana(double origemLat, double origemLong, double destinoLat, double destinoLong);
         List<Amigo> ObterTresMaisProximos(List<Amigo> todosAmigos);
+        Localizacao ObterLatLongPorId(int id);
     }
 }

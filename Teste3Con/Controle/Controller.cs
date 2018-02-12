@@ -51,6 +51,11 @@ namespace Teste3Con.Controle
             return todosAmigos;
         }
 
+        public Localizacao ObterLatLongPorId(int id)
+        {
+            ObtemLatLongPorId obter = new ObtemLatLongPorId();
+            return obter.ObterLatLongPorId(id);
+        }
        
     }
 }
